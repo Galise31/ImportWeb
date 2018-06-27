@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{154EC0A2-BE14-432D-BFC8-B770238C6AAC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ImportWeb</RootNamespace>
+    <AssemblyName>ImportWeb</AssemblyName>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ImportWeb.IWMain</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IW.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\IwTools.cs" />
+    <Compile Include="Ecrans\Bordereau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecrans\Bordereau.Designer.cs">
+      <DependentUpon>Bordereau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecrans\Contrat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecrans\Contrat.Designer.cs">
+      <DependentUpon>Contrat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecrans\Parametres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecrans\Parametres.Designer.cs">
+      <DependentUpon>Parametres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecrans\RunIW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecrans\RunIW.Designer.cs">
+      <DependentUpon>RunIW.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ecrans\Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ecrans\Start.Designer.cs">
+      <DependentUpon>Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IWMain.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Ecrans\Bordereau.resx">
+      <DependentUpon>Bordereau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecrans\Contrat.resx">
+      <DependentUpon>Contrat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecrans\Parametres.resx">
+      <DependentUpon>Parametres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecrans\RunIW.resx">
+      <DependentUpon>RunIW.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ecrans\Start.resx">
+      <DependentUpon>Start.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="importwebvfp">
+      <Guid>{A7D1BD8F-AE6C-456C-9AFA-F39A749874D7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_galise.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Annuler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_galise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IW.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportWeb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wait.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IW.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
