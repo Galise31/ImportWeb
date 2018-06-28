@@ -5,12 +5,16 @@ using System.Xml.Xsl;
 
 namespace ImportWeb
 {
+    // -------------------------------------------------------------
+    // Affiche le résultat de l'ImportWeb d'un contrat dans une page Web
+    // -------------------------------------------------------------
     public partial class Contrat : Form
     {
         public Contrat()
         {
             InitializeComponent();
 
+            // On transforme le flux XMl avec une feuille XSL
             using (XmlReader loFile = XmlReader.Create(new StringReader(IwTools.cIW)))
             {
                 string xslFile = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + ".xsl").FullName.ToString();

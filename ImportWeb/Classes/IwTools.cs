@@ -10,6 +10,9 @@ using System.Text;
 
 namespace ImportWeb
 {
+    // -------------------------------------------------------------
+    // Classe u(ilisée pour mémoriser les paramètres de l'ImportWeb demandé
+    // -------------------------------------------------------------
     public class IwTools
     {
         public static importwebvfp.ImportWeb_VFP loIW { get; set; }
@@ -20,6 +23,9 @@ namespace ImportWeb
         public static string cIWUser { get; set; }
         public static string cIWPwd { get; set; }
 
+        // -------------------------------------------------------------
+        // Charge la liste des procédures disponiblres dans votre ImportWeb
+        // -------------------------------------------------------------
         public static DataTable IW_Liste()
         {
             DataTable dtProc = new DataTable();
@@ -43,6 +49,7 @@ namespace ImportWeb
                 return dtProc;
             };
 
+            // On remplit la DataTable
             DataColumn dcProc = new DataColumn("Proc");
             dcProc.DataType = System.Type.GetType("System.String");
 
@@ -65,6 +72,10 @@ namespace ImportWeb
             return dtProc;
         }
 
+        
+        // -------------------------------------------------------------
+        // Fonction d'extraction entre 2 délimiteurs
+        // -------------------------------------------------------------
         public static string strExtract(string content, string startString, string endString)
         {
             int Start = 0, End = 0;
@@ -80,49 +91,39 @@ namespace ImportWeb
                 return string.Empty;
         }
     }
-}
 
-public class IniFile   // revision 11
-{
-    string Path;
-    string EXE = Assembly.GetExecutingAssembly().GetName().Name;
-
-    [DllImport("kernel32", CharSet = CharSet.Unicode)]
-    static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
-
-    [DllImport("kernel32", CharSet = CharSet.Unicode)]
-    static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
-
-    public IniFile(string IniPath = null)
+    // -------------------------------------------------------------
+    // Classe de gestion des fichiers INI
+    // -------------------------------------------------------------
+    public class IniFile   // revision 11
     {
-        Path = new FileInfo(IniPath ?? EXE + ".ini").FullName.ToString();
-    }
+        string Path;
+        string EXE = Assembly.GetExecutingAssembly().GetName().Name;
 
-    public string Read(string Key, string Section = null)
-    {
-        var RetVal = new StringBuilder(255);
-        GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
-        return RetVal.ToString();
-    }
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
+        static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
 
-    public void Write(string Key, string Value, string Section = null)
-    {
-        WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
-    }
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
+        static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
 
-    public void DeleteKey(string Key, string Section = null)
-    {
-        Write(Key, null, Section ?? EXE);
-    }
+        public IniFile(string IniPath = null)
+        {
+            Path = new FileInfo(IniPath ?? EXE + ".ini").FullName.ToString();
+        }
 
-    public void DeleteSection(string Section = null)
-    {
-        Write(null, null, Section ?? EXE);
-    }
+        public string Read(string Key, string Section = null)
+        {
+            if (!File.Exists(Path))
+                return "";
+            var RetVal = new StringBuilder(255);
+            GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
+            return RetVal.ToString();
+        }
 
-    public bool KeyExists(string Key, string Section = null)
-    {
-        return Read(Key, Section).Length > 0;
+        public void Write(string Key, string Value, string Section = null)
+        {
+            if (File.Exists(Path))
+                WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
+        }
     }
 }
-
