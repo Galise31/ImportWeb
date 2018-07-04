@@ -17,8 +17,9 @@ namespace ImportWeb
             // On transforme le flux XMl avec une feuille XSL
             using (XmlReader loFile = XmlReader.Create(new StringReader(IwTools.cIW)))
             {
-                string xslFile = new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + ".xsl").FullName.ToString();
-                if (!File.Exists(xslFile))
+               //string xslFile = new FileInfo(System.Reflection.Assembly.GetEntryAssembly().GetName().Name + ".xsl").FullName.ToString();
+               string xslFile = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("ImportWeb.exe", "ImportWeb.xsl");
+               if (!File.Exists(xslFile))
                 {
                     MessageBox.Show("Fichier " + xslFile + " introuvable", "ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
