@@ -14,6 +14,7 @@ namespace ImportWeb
         {
             InitializeComponent();
 
+        
             // On transforme le flux XMl avec une feuille XSL
             using (XmlReader loFile = XmlReader.Create(new StringReader(IwTools.cIW)))
             {
