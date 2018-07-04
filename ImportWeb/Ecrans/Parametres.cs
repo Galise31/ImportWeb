@@ -135,6 +135,7 @@ namespace ImportWeb
                                 // On mémorise le Code
                                 lcCode = IwTools.strExtract(lcItems, ",", ",");
                                 lcItems = lcItems.Replace("," + lcCode + ",", ",");
+                                loCombo.ValueMember = "Code";
                             }
                             else
                             {
@@ -214,7 +215,13 @@ namespace ImportWeb
                 if (loControl is TextBox)
                     loControl.Text = lcValeur;
                 if (loControl is ComboBox)
-                    loControl.Text = lcValeur;
+                {
+                    ComboBox loCombo = (ComboBox)loControl;
+                    if (loCombo.ValueMember == string.Empty)
+                        loCombo.Text = lcValeur;
+                    else
+                        loCombo.SelectedValue = lcValeur;
+                }
                 if (loControl is CheckBox)
                     ((CheckBox)loControl).Checked = (lcValeur == "1");
             }
@@ -234,13 +241,18 @@ namespace ImportWeb
         private void EcrireDonnees()
         {
             IniFile loIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + "IW_Login.txt");
-
             foreach (Control loControl in Controls)
             {
                 if (loControl is TextBox)
                     loIni.Write(loControl.Name, loControl.Text, this.Text);
                 if (loControl is ComboBox)
-                    loIni.Write(loControl.Name, loControl.Text, this.Text);
+                {
+                    ComboBox loCombo = (ComboBox)loControl;
+                    if (loCombo.ValueMember == string.Empty)
+                        loIni.Write(loControl.Name, loControl.Text, this.Text);
+                    else
+                        loIni.Write(loControl.Name, loCombo.SelectedValue.ToString(), this.Text);
+                }
                 if (loControl is CheckBox)
                 {
                     if (((CheckBox)loControl).Checked == true)

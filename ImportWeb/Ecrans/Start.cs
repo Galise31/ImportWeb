@@ -27,6 +27,11 @@ namespace ImportWeb
             cboProc.AutoCompleteMode = AutoCompleteMode.Suggest;
             
             this.ActiveControl = cboProc;
+
+            IniFile loIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + "IW_Login.txt");
+
+            txtIWUser.Text = loIni.Read("Login", this.Text);
+            txtIWPwd.Text = loIni.Read("Pwd", this.Text);
         }
 
         private void txtNPoliceCie_TextChanged(object sender, EventArgs e)
@@ -67,8 +72,14 @@ namespace ImportWeb
             string lcProc = cboProc.Text.Replace(" ", "").ToUpper();
             if (lcProc.Contains("-"))
                 lcProc = lcProc.Substring(0, lcProc.IndexOf("-"));
+
+            IniFile loIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + "IW_Login.txt");
+
             IwTools.cIWUser = txtIWUser.Text;
+            loIni.Write("Login", txtIWUser.Text, this.Text);
             IwTools.cIWPwd = txtIWPwd.Text;
+            loIni.Write("Pwd", txtIWPwd.Text, this.Text);
+
             if (IwTools.cIWUser == "TEST")
             {
                 MessageBox.Show("Le compte TEST ne renvoie qu'un seul exemple", "ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,7 +101,6 @@ namespace ImportWeb
 
             // Les paramètres de la procédure sont enregistrés dans IW_Login.txt, dans le même dossier de l'EXE
             // Dans votre logiciel, vous devez connecter votre source de données
-            IniFile loIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + "IW_Login.txt");
             Thread thread;
             if ((loIni.Read("txtWebbApp", lcProc) == string.Empty) && (IwTools.cIWUser != "TEST"))
                 // S'il n'y a pas de paramètre et que le compte n'est pas TEST => on doit saisir les paramètres dans Parametres.cs

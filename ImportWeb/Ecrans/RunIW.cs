@@ -77,7 +77,9 @@ namespace ImportWeb
             string lc = IwTools.loIW.Start(lcData);
             if (IwTools.loIW.CERREUR.ToString() != String.Empty)
             {
-                MessageBox.Show(IwTools.loIW.CERREUR.ToString(), "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                imgWait.Visible = false;
+                MessageBox.Show(IwTools.loIW.CERREUR.ToString() + Environment.NewLine + 
+                                lcData, "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
             IwTools.cIW = IwTools.loIW.CXMLREPONSE.ToString();

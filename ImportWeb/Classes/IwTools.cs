@@ -122,8 +122,9 @@ namespace ImportWeb
 
         public void Write(string Key, string Value, string Section = null)
         {
-            if (File.Exists(Path))
-                WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
+            if (!File.Exists(Path))
+                File.CreateText(Path);
+            WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
         }
     }
 }

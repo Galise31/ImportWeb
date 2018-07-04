@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RunIW));
             this.lblTitre = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.imgWait = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgWait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -51,15 +51,15 @@
             this.lblTitre.Text = "Cie";
             this.lblTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox3
+            // imgWait
             // 
-            this.pictureBox3.Image = global::ImportWeb.Properties.Resources.wait;
-            this.pictureBox3.Location = new System.Drawing.Point(159, 123);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 9;
-            this.pictureBox3.TabStop = false;
+            this.imgWait.Image = global::ImportWeb.Properties.Resources.wait;
+            this.imgWait.Location = new System.Drawing.Point(159, 123);
+            this.imgWait.Name = "imgWait";
+            this.imgWait.Size = new System.Drawing.Size(40, 40);
+            this.imgWait.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imgWait.TabIndex = 9;
+            this.imgWait.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -93,14 +93,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 199);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.imgWait);
             this.Controls.Add(this.lblTitre);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RunIW";
             this.Text = "ImportWeb en cours";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgWait)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -113,7 +113,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTitre;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox imgWait;
         private System.Windows.Forms.Timer timer1;
     }
 }

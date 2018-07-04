@@ -198,7 +198,6 @@
             // txtIWUser
             // 
             this.txtIWUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(166)))), ((int)(((byte)(96)))));
-            this.txtIWUser.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIWUser.Location = new System.Drawing.Point(142, 321);
             this.txtIWUser.Name = "txtIWUser";
             this.txtIWUser.Size = new System.Drawing.Size(84, 20);
@@ -238,7 +237,6 @@
             // txtIWPwd
             // 
             this.txtIWPwd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(166)))), ((int)(((byte)(96)))));
-            this.txtIWPwd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIWPwd.Location = new System.Drawing.Point(142, 347);
             this.txtIWPwd.Name = "txtIWPwd";
             this.txtIWPwd.Size = new System.Drawing.Size(84, 20);
