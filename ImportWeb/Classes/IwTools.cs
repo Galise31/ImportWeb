@@ -13,9 +13,9 @@ namespace ImportWeb
     // -------------------------------------------------------------
     // Classe u(ilisée pour mémoriser les paramètres de l'ImportWeb demandé
     // -------------------------------------------------------------
-    public class IwTools
+    public static class IwTools
     {
-        public static importwebvfp.ImportWeb_VFP loIW { get; set; }
+        public static ImportWeb_Proxy.Proxy loIW { get; set; }
         public static string cAppli { get; set; }
         public static string cAction { get; set; }
         public static string cActionParam { get; set; }
@@ -43,9 +43,9 @@ namespace ImportWeb
 	<CieParam></CieParam>
 </IW>";
             lcData = loIW.Start(lcData);
-            if (loIW.CERREUR.ToString() != String.Empty)
+            if (loIW.cErreur != String.Empty)
             {
-                MessageBox.Show(IwTools.loIW.CXMLREPONSE.ToString(), "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(IwTools.loIW.cXMLReponse, "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return dtProc;
             };
 
@@ -55,7 +55,7 @@ namespace ImportWeb
 
             dtProc.Columns.Add(dcProc);
 
-            lcData = loIW.CXMLREPONSE.ToString();
+            lcData = loIW.cXMLReponse;
             string[] lines = lcData.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             foreach (string line in lines)
@@ -100,15 +100,21 @@ namespace ImportWeb
         string Path;
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
 
         public IniFile(string IniPath = null)
         {
             Path = new FileInfo(IniPath ?? EXE + ".ini").FullName.ToString();
+
+            if (!File.Exists(Path))
+            {
+                StreamWriter sw = File.CreateText(Path);
+                sw.Close();
+            }
         }
 
         public string Read(string Key, string Section = null)
@@ -122,8 +128,6 @@ namespace ImportWeb
 
         public void Write(string Key, string Value, string Section = null)
         {
-            if (!File.Exists(Path))
-                File.CreateText(Path);
             WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
         }
     }

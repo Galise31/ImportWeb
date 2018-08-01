@@ -17,7 +17,7 @@ namespace ImportWeb
 
             try
             {
-                IwTools.loIW = new importwebvfp.ImportWeb_VFP();
+                IwTools.loIW = new ImportWeb_Proxy.Proxy();
             }
             catch (System.Runtime.InteropServices.COMException loEx)
             {

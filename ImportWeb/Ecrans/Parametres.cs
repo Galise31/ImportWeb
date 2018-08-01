@@ -36,14 +36,14 @@ namespace ImportWeb
 	<CieParam></CieParam>
 </IW>";
             string lc = IwTools.loIW.Start(lcData);
-            if (IwTools.loIW.CERREUR.ToString() != String.Empty)
+            if (IwTools.loIW.cErreur != String.Empty)
             {
-                MessageBox.Show(IwTools.loIW.CXMLREPONSE.ToString(), "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(IwTools.loIW.cXMLReponse, "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
 
             // On crée les objets à partir de la réponse de l'ImportWeb
-            ObjetsCreer(IwTools.loIW.CXMLREPONSE.ToString() + @"champ/r");
+            ObjetsCreer(IwTools.loIW.cXMLReponse + @"champ/r");
 
             // On charge les paramètres dans le formulaire
             LireDonnees();
@@ -241,6 +241,7 @@ namespace ImportWeb
         private void EcrireDonnees()
         {
             IniFile loIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + "IW_Login.txt");
+
             foreach (Control loControl in Controls)
             {
                 if (loControl is TextBox)

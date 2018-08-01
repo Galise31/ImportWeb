@@ -75,14 +75,14 @@ namespace ImportWeb
 </IW>";
 
             string lc = IwTools.loIW.Start(lcData);
-            if (IwTools.loIW.CERREUR.ToString() != String.Empty)
+            if (IwTools.loIW.cErreur != String.Empty)
             {
                 imgWait.Visible = false;
-                MessageBox.Show(IwTools.loIW.CERREUR.ToString() + Environment.NewLine + 
+                MessageBox.Show(IwTools.loIW.cErreur + Environment.NewLine + 
                                 lcData, "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
-            IwTools.cIW = IwTools.loIW.CXMLREPONSE.ToString();
+            IwTools.cIW = IwTools.loIW.cXMLReponse;
 
             // Selon l'action, on appelle Contrat.cs ou Bordereau.cs
             Thread thread;
