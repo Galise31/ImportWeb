@@ -15,17 +15,14 @@ namespace ImportWeb
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+        
             try
             {
                 IwTools.loIW = new ImportWeb_Proxy.Proxy();
             }
-            catch (System.Runtime.InteropServices.COMException loEx)
-            {
-                MessageBox.Show("Vous devez générer une application 32 bits");
-            }
             catch (Exception loEx)
             {
-                throw loEx;
+                MessageBox.Show("Vous devez générer une application 32 bits");
             }
 
             if (IwTools.loIW == null)
