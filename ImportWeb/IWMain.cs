@@ -34,6 +34,7 @@ namespace ImportWeb
             Application.Run(new Start());
         }
 
+    
         internal static Assembly AssemblyResolveHandler(object sender, ResolveEventArgs args)
         {
             // This handler is called only when the common language runtime tries to bind to the assembly and fails.
