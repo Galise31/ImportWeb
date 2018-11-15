@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IW.ico" />
+    <None Include="Resources\help.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

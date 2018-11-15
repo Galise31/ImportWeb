@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Parametres));
             this.lblTitre = new System.Windows.Forms.Label();
+            this.cmdHelp = new System.Windows.Forms.Button();
             this.cmdValide = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -43,6 +44,21 @@
             this.lblTitre.TabIndex = 1;
             this.lblTitre.Text = "Paramètres";
             this.lblTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmdHelp
+            // 
+            this.cmdHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdHelp.Image = global::ImportWeb.Properties.Resources.Help;
+            this.cmdHelp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdHelp.Location = new System.Drawing.Point(72, 39);
+            this.cmdHelp.Name = "cmdHelp";
+            this.cmdHelp.Padding = new System.Windows.Forms.Padding(5);
+            this.cmdHelp.Size = new System.Drawing.Size(101, 44);
+            this.cmdHelp.TabIndex = 3;
+            this.cmdHelp.Text = "Aide";
+            this.cmdHelp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdHelp.UseVisualStyleBackColor = true;
+            this.cmdHelp.Click += new System.EventHandler(this.cmdHelp_Click);
             // 
             // cmdValide
             // 
@@ -64,6 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 419);
+            this.Controls.Add(this.cmdHelp);
             this.Controls.Add(this.cmdValide);
             this.Controls.Add(this.lblTitre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -77,5 +94,6 @@
         #endregion
         private System.Windows.Forms.Label lblTitre;
         private System.Windows.Forms.Button cmdValide;
+        private System.Windows.Forms.Button cmdHelp;
     }
 }

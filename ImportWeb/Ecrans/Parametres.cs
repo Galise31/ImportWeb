@@ -193,9 +193,11 @@ namespace ImportWeb
 
             // On positionne les autres objets
             cmdValide.Top = 50 + LEO_TOP + (lnIndice * LEO_HEIGHT);
+            cmdHelp.Top = cmdValide.Top;
             this.Height = cmdValide.Top + cmdValide.Height + 15 - ClientRectangle.Height + this.Height;
             this.Width = LEO_LEFT + lnLargeur - ClientRectangle.Width + this.Width + 15;
-            cmdValide.Left = ClientRectangle.Width - cmdValide .Width - 15;
+            cmdValide.Left = ClientRectangle.Width - cmdValide.Width - 15;
+            cmdHelp.Left = 15;
             lblTitre.Width = ClientRectangle.Width - lblTitre.Left * 2;
         }
 
@@ -280,6 +282,11 @@ namespace ImportWeb
                 thread.Start();
             }
             this.Close();
+        }
+
+        private void cmdHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://importweb.fr/user/" + this.Text.ToLower() + ".htm");
         }
 
         public static void ThreadRun(string tcProc)

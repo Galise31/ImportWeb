@@ -262,6 +262,8 @@
             this.Controls.Add(this.cmdValide);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Start";
             this.Text = "Tester l\'ImportWeb";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
