@@ -13,31 +13,20 @@ namespace ImportWeb
         [STAThread]
         static void Main()
         {
+            // Pour trouver le proxy ailleurs
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolveHandler);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // Pour trouver le proxy ailleurs
-            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolveHandler;
-
-            try
-            {
-                IwTools.loIW = new ImportWeb_Proxy.Proxy();
-            }
-            catch (Exception loEx)
-            {
-                MessageBox.Show("Vous devez générer une application 32 bits");
-            }
-
-            if (IwTools.loIW == null)
-                return;
 
             Application.Run(new Start());
         }
 
-    
+
         internal static Assembly AssemblyResolveHandler(object sender, ResolveEventArgs args)
         {
             // This handler is called only when the common language runtime tries to bind to the assembly and fails.
+            // ImportWeb_Proxy, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null
 
             //Retrieve the list of referenced assemblies in an array of AssemblyName.
             Assembly MyAssembly, objExecutingAssemblies;
@@ -58,7 +47,7 @@ namespace ImportWeb
                     if (strTempAssmbPath == string.Empty)
                         strTempAssmbPath = @"C:\Program Files (x86)\Galise\ImportWeb\";
 
-                    if (strTempAssmbPath.EndsWith("\\")) strTempAssmbPath += "\\";
+                    if (!strTempAssmbPath.EndsWith("\\")) strTempAssmbPath += "\\";
 
                     strTempAssmbPath += args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll";
                     break;
@@ -70,5 +59,6 @@ namespace ImportWeb
             //Return the loaded assembly.
             return MyAssembly;
         }
+
     }
 }

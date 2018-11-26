@@ -18,6 +18,18 @@ namespace ImportWeb
         {
             InitializeComponent();
 
+            try
+            {
+                IwTools.loIW = new ImportWeb_Proxy.Proxy();
+            }
+            catch (Exception loEx)
+            {
+                MessageBox.Show("Vous devez générer une application 32 bits");
+            }
+
+            if (IwTools.loIW == null)
+                return;
+
             // On charge la liste des procédures disponible à partir de l'ImportWeb
             cboProc.DataSource = IwTools.IW_Liste();
             cboProc.DisplayMember = "Proc";

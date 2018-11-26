@@ -45,7 +45,7 @@ namespace ImportWeb
             lcData = loIW.Start(lcData);
             if (loIW.cErreur != String.Empty)
             {
-                MessageBox.Show(IwTools.loIW.cXMLReponse, "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(IwTools.loIW.cErreur, "Erreur ImportWeb", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return dtProc;
             };
 
@@ -72,7 +72,7 @@ namespace ImportWeb
             return dtProc;
         }
 
-        
+
         // -------------------------------------------------------------
         // Fonction d'extraction entre 2 délimiteurs
         // -------------------------------------------------------------
